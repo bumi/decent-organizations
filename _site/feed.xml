@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>decent organizations</title>
+    <description>A collection of resources for decent organizations</description>
+    <link>https://bumi.github.io/decent-organizations/</link>
+    <atom:link href="https://bumi.github.io/decent-organizations/feed.xml" rel="self" type="application/rss+xml"/>
+    <pubDate>Wed, 25 Oct 2017 12:37:12 +0200</pubDate>
+    <lastBuildDate>Wed, 25 Oct 2017 12:37:12 +0200</lastBuildDate>
+    <generator>Jekyll v3.6.2</generator>
+    
+      <item>
+        <title>Colony</title>
+        <description>&lt;p&gt;Colony is infrastructure for the future of work: self-organizing companies that run via software, not paperwork.&lt;/p&gt;
+</description>
+        <pubDate>Mon, 23 Oct 2017 17:15:05 +0200</pubDate>
+        <link>https://bumi.github.io/decent-organizations/colony/</link>
+        <guid isPermaLink="true">https://bumi.github.io/decent-organizations/colony/</guid>
+        
+        <category>Ethereum</category>
+        
+        
+        <category>Tools</category>
+        
+      </item>
+    
+  </channel>
+</rss>
