@@ -4,11 +4,6 @@ description: A collection of resources for decent organizations
 baseurl: "/decent-organizations" # the subpath of your site, e.g. /blog
 url: "https://bumi.github.io" # the base hostname & protocol for your site e.g. http://willianjusten.com.br
 
-collections:
-  tools: 
-    name: tools tools tools
-    output: true
-
 # User settings
 username: 
 user_description: 
