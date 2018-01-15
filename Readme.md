@@ -1,14 +1,44 @@
 # Collection of resources for decent organizations
 
-
-## How to add new content?
-
-To add new content create a file in the `_posts` directory similar to the existing ones and create a pull request.  
-Best use an existing file (like [this one](https://raw.githubusercontent.com/bumi/decent-organizations/master/_posts/2017-10-23-colony.md) as a template. 
-
-To create a new file here on GitHub go to [`_posts`](https://github.com/bumi/decent-organizations/tree/master/_posts) and click "Create new file" (on the right). 
+decent organizations is a directory of tools and general resources for decent organizatons. 
+Think of a "producthunt.com" like website that allows us to discover, share and discuss any related links/resources around the topic of decent organizations.
 
 
-------------
+## Features
 
-Template design based on the [Cards Jekyll Template](https://github.com/willianjusten/cards-jekyll-template) by [@willianjusten](https://willianjusten.com.br/)
+### Browse entries
+
+
+
+
+### Adding new entries
+
+Our aim is to build an open directory to collaboratively share and collect resources.  
+It should be possible for everybody to easily contribute new content.  
+Adding entries does not require any signup and any new submission is directly published; there will be no review process; anybody can edit any content - wiki style WTF!
+
+Content has the following attributes:
+
+* Title 
+* Description
+* URLs: one URL is required but entries can link to multiple resources
+* Categories: one or more categories
+
+### Editing entries
+
+It should be possible for anybody to edit content. 
+For the initial release we do not story the history of the changes. 
+
+### Voting / Rating
+
+In order to rank and list the entries by "importance" it should be possible to up and down vote any entry. 
+In order to up/down vote an entry a user has to provide a short reason for the vote.  
+By providing a reason for the voting we can collect more content and the thoughts of contributors and make it a bit harder to simply randomly vote on anything. 
+
+### RSS feed
+
+
+## What are decent organizations?
+
+
+
