@@ -1,5 +1,6 @@
 class Post < ApplicationRecord
   has_and_belongs_to_many :categories
+  has_many :comments, dependent: :destroy
 
   validates :title, presence: true, length: { in: 6..255}
   validates :description, presence: true, length: { in: 40..1000}
