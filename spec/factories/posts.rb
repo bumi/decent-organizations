@@ -1,5 +1,5 @@
 FactoryBot.define do
-  factory :comment do
+  factory :post do
     title "My Title"
     description "Description"
     url "https://example.com"
