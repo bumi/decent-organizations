@@ -7,5 +7,6 @@
     .cell.small-10
       .a-post-content
         %small= post.categories.map(&:name).join(", ")
-        %h3= post.title
+        %h3
+          %a{href: post_path(post)}= post.title
         %span= post.description
