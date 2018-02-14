@@ -1,6 +1,10 @@
 class PostsController < ApplicationController
   def index
-    @posts = Post.limit(50)
-    @categories = Category.all
+    if params[:category]
+      @posts = Category.find(params[:category]).posts.limit(50)
+    else
+      @posts = Post.limit(50)
+    end
   end
+
 end

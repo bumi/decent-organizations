@@ -1,0 +1,7 @@
+%aside.a-sidebar
+  %ul.vertical.menu
+    %li
+      %a{href: '/'} All
+    - Category.all.each.each do |category|
+      %li
+        %a{href: posts_path(category: category)}= category.name
