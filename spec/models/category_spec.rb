@@ -20,4 +20,10 @@ RSpec.describe Category, type: :model do
     category.name = "a" * 256
     expect(category).not_to be_valid
   end
+
+  it 'is not valid with a duplicate name' do
+    unique_categroy = FactoryBot.create(:category)
+    duplicate_category = FactoryBot.build(:category, name: unique_categroy.name)
+    expect(duplicate_category).not_to be_valid
+  end
 end
