@@ -1,0 +1,6 @@
+class PostController < ApplicationController
+  def index
+    @posts = Post.limit(50)
+    @categories = Category.all
+  end
+end
