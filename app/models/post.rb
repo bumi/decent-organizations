@@ -6,6 +6,7 @@ class Post < ApplicationRecord
   validates :description, presence: true, length: { in: 40..1000}
   validates :url, presence: true, length: { maximum: 255 }
   validates :categories, presence: true
+  validates :upvotes, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
   validate :valid_url
 
   def valid_url
