@@ -1,5 +1,10 @@
 .grid-container
   .grid-x
+    .cell
+      -if flash[:alert]
+        .callout.alert= flash[:alert]
+      -if flash[:notice]
+        .callout.success= flash[:notice]
     .cell.small-12.medium-9
       .a-post
         %a{href: edit_post_path(@post)} Edit
@@ -18,7 +23,10 @@
       .a-comments
         .a-comments-title
           %h4 Opinions
-        - @post.comments.each do |comment|
-          .a-comment
-            %p= comment.text
-            %small= comment.created_at
+          - if @post.comments.empty?
+            No Comments yet
+          = render 'comments_form', post: @post
+          - @post.comments.each do |comment|
+            .a-comment
+              %p= comment.text
+              %small= "#{time_ago_in_words(comment.created_at)} ago"
