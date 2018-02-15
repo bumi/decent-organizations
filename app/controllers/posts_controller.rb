@@ -1,9 +1,9 @@
 class PostsController < ApplicationController
   def index
     if params[:category]
-      @posts = Category.find(params[:category]).posts.limit(50)
+      @posts = Category.find(params[:category]).posts.limit(50).to_a
     else
-      @posts = Post.limit(50)
+      @posts = Post.limit(50).to_a
     end
   end
 
@@ -17,11 +17,24 @@ class PostsController < ApplicationController
 
   def create
     @post = Post.new(post_params)
-
     if @post.save
       redirect_to @post
     else
       render 'new'
+    end
+  end
+
+  def edit
+    @post = Post.find(params[:id])
+  end
+
+  def update
+    @post = Post.find(params[:id])
+
+    if @post.update(post_params)
+     redirect_to @post
+    else
+      render 'edit'
     end
   end
 
