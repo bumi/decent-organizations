@@ -16,6 +16,6 @@
         = f.label 'Categories'
         .cell
           = f.collection_check_boxes :category_ids, Category.all, :id, :name, include_hidden: false
-        = f.submit 'Save'
+        = f.submit 'Save', class: 'button'
         
     

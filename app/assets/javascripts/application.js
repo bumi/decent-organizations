@@ -17,10 +17,12 @@
 
 $(function(){ 
   $(document).foundation(); 
-  $('#upvote-button').on('click', showUpvoteForm)
-  function showUpvoteForm() {
-    $('#js-upvote-form').removeClass('asHidden')
-    $('#upvote-button').hide()
+  $('#upvote-button').on('click', toggleUpvoteForm)
+  $('#js-cancel-upvote-button').on('click', toggleUpvoteForm)
+
+  function toggleUpvoteForm() {
+    $('#js-upvote-form').toggleClass('asHidden')
+    $('#upvote-button').toggle()
   }
   
 });

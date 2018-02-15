@@ -7,8 +7,9 @@
         .callout.success= flash[:notice]
     .cell.small-12.medium-9
       .a-post
-        %a{href: edit_post_path(@post)} Edit
         .grid-x
+          .cell.small-12.small-offset-11
+            %a{href: edit_post_path(@post)} Edit
           .cell.small-2
             = render 'upvotes', post: @post
           .cell.small-10
