@@ -38,10 +38,24 @@ class PostsController < ApplicationController
     end
   end
 
+  def upvote
+    @post = Post.find(params[:id])
+    @post.upvote
+    @comment = @post.comments.create(comment_params)
+    respond_to do |format|
+      format.html { redirect_to @post }
+      format.js { }
+    end
+  end
+
   private
 
   def post_params
     params.require(:post).permit(:title, :description, :url, :category_ids => [])
+  end
+
+  def comment_params
+    params.permit(:text)
   end
 
 end

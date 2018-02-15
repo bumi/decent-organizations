@@ -10,9 +10,7 @@
         %a{href: edit_post_path(@post)} Edit
         .grid-x
           .cell.small-2
-            .a-post-votes
-              %span= @post.upvotes
-              %span upvotes
+            = render 'upvotes', post: @post
           .cell.small-10
             .a-post-content
               %small= @post.categories.map(&:name).join(", ")
@@ -20,13 +18,4 @@
               %p= @post.description
               %a{href: @post.url}= @post.url
 
-      .a-comments
-        .a-comments-title
-          %h4 Opinions
-          - if @post.comments.empty?
-            No Comments yet
-          = render 'comments_form', post: @post
-          - @post.comments.each do |comment|
-            .a-comment
-              %p= comment.text
-              %small= "#{time_ago_in_words(comment.created_at)} ago"
+      = render 'comments', post: @post

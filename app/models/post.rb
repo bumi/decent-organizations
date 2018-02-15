@@ -19,4 +19,8 @@ class Post < ApplicationRecord
   rescue URI::InvalidURIError
     errors.add(:base, 'Provided URL must be a valid URL')
   end
+
+  def upvote
+    update_column(:upvotes, upvotes + 1)
+  end
 end

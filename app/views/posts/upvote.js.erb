@@ -1,0 +1,5 @@
+$('#js-upvote-count').html('<%= @post.upvotes %>')
+$('#upvote-comment-text').val('')
+$('#js-upvote-form').addClass('asHidden')
+$('#comments-list').replaceWith('<%= j render("comments", post: @post) %>')
+$('#upvote-button').show()

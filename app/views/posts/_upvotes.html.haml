@@ -1,0 +1,11 @@
+.a-post-votes
+  %span#js-upvote-count= post.upvotes
+  %span upvotes
+  %a#upvote-button{href: 'javascript:void(0)'} Upvote
+
+  .cell
+    #js-upvote-form.a-comment-form.asHidden
+      = form_tag([:upvote, post], remote: true) do
+        = label_tag :text, 'Text'
+        = text_field_tag :text, '', id: "upvote-comment-text"
+        = submit_tag 'Save'
