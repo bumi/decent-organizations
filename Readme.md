@@ -40,5 +40,13 @@ By providing a reason for the voting we can collect more content and the thought
 
 ## What are decent organizations?
 
+Very good question. We are trying to figure that out ourselves, and we would love to hear from you if you want to collaborate with us - especially if you disagree.
 
+Some thoughts so far:
+
+We humans cannot solve systemic problems - like inequality, unsustainable growth, unfair labor, or climate change - with linear thinking in hierarchical organizations. That's where decent organizations come in.
+
+* Decent organizations put humans first - in why, what and how they operate.
+* Decent organizations are or strive to be decentralized.
+* Decent organizations discuss what "decent" means.
 
