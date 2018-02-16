@@ -61,6 +61,16 @@ RSpec.describe Post, type: :model do
     expect(post).not_to be_valid
   end
 
+  it 'is not valid with a negative upvotes count' do
+    post.upvotes = -1
+    expect(post).not_to be_valid
+  end
+
+  it 'is not valid with a non-integer passed for upvotes' do
+    post.upvotes = 2.5
+    expect(post).not_to be_valid
+  end
+
   describe '#valid_url' do
     let(:empty_post) { described_class.new }
 

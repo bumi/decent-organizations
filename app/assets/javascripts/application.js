@@ -10,6 +10,19 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
+//= require jquery
 //= require rails-ujs
-//= require turbolinks
+//= require foundation
 //= require_tree .
+
+$(function(){ 
+  $(document).foundation(); 
+  $('#upvote-button').on('click', toggleUpvoteForm)
+  $('#js-cancel-upvote-button').on('click', toggleUpvoteForm)
+
+  function toggleUpvoteForm() {
+    $('#js-upvote-form').toggleClass('asHidden')
+    $('#upvote-button').toggle()
+  }
+  
+});

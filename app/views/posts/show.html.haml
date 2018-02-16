@@ -1,0 +1,22 @@
+.grid-container
+  .grid-x
+    .cell
+      -if flash[:alert]
+        .callout.alert= flash[:alert]
+      -if flash[:notice]
+        .callout.success= flash[:notice]
+    .cell.small-12.medium-9
+      .a-post
+        .grid-x
+          .cell.small-12.small-offset-11
+            %a{href: edit_post_path(@post)} Edit
+          .cell.small-2
+            = render 'upvotes', post: @post
+          .cell.small-10
+            .a-post-content
+              %small= @post.categories.map(&:name).join(", ")
+              %h3= @post.title
+              %p= @post.description
+              %a{href: @post.url}= @post.url
+
+      = render 'comments', post: @post
