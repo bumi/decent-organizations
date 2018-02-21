@@ -1,6 +1,6 @@
 # Categories
 Category.create!(name: "Papers")
-Category.create!(name: "Blogposts")
+Category.create!(name: "Blogposts", description: "A blog (a truncation of the expression weblog)[1] is a discussion or informational website published on the World Wide Web consisting of discrete, often informal diary-style text entries. Posts are typically displayed in reverse chronological order, so that the most recent post appears first, at the top of the web page. Until 2009, blogs were usually the work of a single individual,[citation needed] occasionally of a small group, and often covered a single subject or topic. In the 2010s, multi-author blogs (MABs) have developed, with posts written by large numbers of authors and sometimes professionally edited.")
 Category.create!(name: "Organisations")
 Category.create!(name: "Tools")
 
@@ -31,9 +31,9 @@ post_three.categories << Category.fourth
 post_three.save!
 
 # Comments
-Comment.create!(text: "I'm waiting for AMP chat; I hear it's fast. /s", post: Post.first)
-Comment.create!(text: "Honestly with all the versions of js libraries and all the CDN hosts, the limitations of cache size and the insane bloat of webpages, I think you're going to have to be pretty lucky to get any beneficial cache hits from unrelated third party sites.", post: Post.first)
-Comment.create!(text: "And you can run it on any platform, so long as it's Google's. The best user choice since the color of your Model T.", post: Post.first)
-Comment.create!(text: "And the offers the assistant delivers as ads will be extremely light-weight, signed off by Google-headed committee.", post: Post.second)
+Comment.create!(name: "A Person", text: "I'm waiting for AMP chat; I hear it's fast. /s", post: Post.first)
+Comment.create!(name: "A Person", text: "Honestly with all the versions of js libraries and all the CDN hosts, the limitations of cache size and the insane bloat of webpages, I think you're going to have to be pretty lucky to get any beneficial cache hits from unrelated third party sites.", post: Post.first)
+Comment.create!(name: "A Person", text: "And you can run it on any platform, so long as it's Google's. The best user choice since the color of your Model T.", post: Post.first)
+Comment.create!(name: "A Person", text: "And the offers the assistant delivers as ads will be extremely light-weight, signed off by Google-headed committee.", post: Post.second)
 
 
