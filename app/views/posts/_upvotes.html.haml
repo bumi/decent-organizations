@@ -17,7 +17,7 @@
         = f.submit 'Save', class: 'button'
         %a.button.secondary#js-cancel-upvote-button{href: 'javascript:void(0)'} Cancel
 
-- if @upvote_comment.try(:errors).present?
+- if comment.errors.present?
   :javascript
     $('#js-upvote-form').removeClass('asHidden')
     $('#upvote-button').hide()
