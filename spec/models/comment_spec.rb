@@ -30,4 +30,15 @@ RSpec.describe Comment, type: :model do
     comment.text = "a" * 4
     expect(comment).not_to be_valid
   end
+
+  it 'is not valid without a name' do
+    comment.name = nil
+    expect(comment).not_to be_valid
+  end
+
+  it 'is not valid with a too long' do
+    comment.name = "a" * 256
+    expect(comment).not_to be_valid
+  end
+
 end

@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   resources :posts do
     resources :comments, only: [:create]
     member do
-      post :upvote
+      put :upvote
     end
   end
   resources :categories, only: [:show]

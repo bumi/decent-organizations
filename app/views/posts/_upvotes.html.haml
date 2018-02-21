@@ -5,8 +5,19 @@
 
   .cell
     #js-upvote-form.a-floating-form.asHidden
-      = form_tag([:upvote, post], remote: true) do
-        = label_tag :text, 'Why are you upvoting?'
-        = text_area_tag :text, '', id: "upvote-comment-text", class: 'a-floating-form--text'
-        = button_tag 'Save', class: 'button'
+      - if comment.errors.any?
+        - comment.errors.full_messages.each do |message|
+          .callout.alert
+            = message
+      = form_for comment, :url => { :action => "upvote" }, :html => { :method => :put } do |f|
+        = f.label :name, 'Name'
+        = f.text_field :name, id: "upvote-comment-name", class: 'input'
+        = f.label :text, 'Why are you upvoting?'
+        = f.text_area :text, id: "upvote-comment-text", class: 'input a-floating-form--text'
+        = f.submit 'Save', class: 'button'
         %a.button.secondary#js-cancel-upvote-button{href: 'javascript:void(0)'} Cancel
+
+- if comment.errors.present?
+  :javascript
+    $('#js-upvote-form').removeClass('asHidden')
+    $('#upvote-button').hide()

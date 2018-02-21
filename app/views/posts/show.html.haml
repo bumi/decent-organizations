@@ -11,7 +11,7 @@
           .cell.small-12.small-offset-11
             %a{href: edit_post_path(@post)} Edit
           .cell.small-2
-            = render 'upvotes', post: @post
+            = render 'upvotes', post: @post, comment: @upvote_comment
           .cell.small-10
             .a-post-content
               %small= @post.categories.map(&:name).join(", ")

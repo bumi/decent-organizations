@@ -24,5 +24,4 @@ $(function(){
     $('#js-upvote-form').toggleClass('asHidden')
     $('#upvote-button').toggle()
   }
-  
 });

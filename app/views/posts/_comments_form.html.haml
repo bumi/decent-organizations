@@ -2,6 +2,8 @@
   %h4 Add your comment
 .cell
   = form_for(Comment.new, url: post_comments_path(post.id)) do |f|
+    = f.label :name, 'Name'
+    = f.text_field :name
     = f.label :text, 'Text'
-    = f.text_field :text
+    = f.text_area :text
     = f.submit 'Save', class: 'button'
