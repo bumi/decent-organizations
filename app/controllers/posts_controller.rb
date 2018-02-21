@@ -9,6 +9,7 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
+    @upvote_comment = Comment.new
   end
 
   def new
@@ -40,12 +41,14 @@ class PostsController < ApplicationController
 
   def upvote
     @post = Post.find(params[:id])
-    @post.upvote
-    @comment = @post.comments.create(comment_params)
-    respond_to do |format|
-      format.html { redirect_to @post }
-      format.js { }
+    @upvote_comment = Comment.new(comment_params.merge(post: @post))
+    if @upvote_comment.save
+      @post.upvote
+      redirect_to post_path(@post)
+    else
+      render 'show'
     end
+
   end
 
   private
@@ -55,7 +58,7 @@ class PostsController < ApplicationController
   end
 
   def comment_params
-    params.permit(:text)
+    params.require(:comment).permit(:text, :name)
   end
 
 end
