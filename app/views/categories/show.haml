@@ -3,5 +3,7 @@
     .cell.small-12.medium-3
       = render 'shared/sidebar', categories: @categories
     .cell.small-12.medium-9
+      %h2= @category.name
+      = @category.description
       .a-postlist
         = render @category.posts

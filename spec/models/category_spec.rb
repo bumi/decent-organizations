@@ -21,6 +21,11 @@ RSpec.describe Category, type: :model do
     expect(category).not_to be_valid
   end
 
+  it 'is not valid with a too long description' do
+    category.description = "a" * 1001
+    expect(category).not_to be_valid
+  end
+
   it 'is not valid with a duplicate name' do
     unique_categroy = FactoryBot.create(:category)
     duplicate_category = FactoryBot.build(:category, name: unique_categroy.name)
