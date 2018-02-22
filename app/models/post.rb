@@ -3,7 +3,7 @@ class Post < ApplicationRecord
   has_many :comments, dependent: :destroy
 
   extend FriendlyId
-  friendly_id :title, use: :slugged
+  friendly_id :title, use: [:slugged, :history]
 
   validates :title, presence: true, length: { in: 6..255}
   validates :description, presence: true, length: { in: 40..1000}
