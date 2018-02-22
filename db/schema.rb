@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180222135018) do
+ActiveRecord::Schema.define(version: 20180222141637) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -58,6 +58,8 @@ ActiveRecord::Schema.define(version: 20180222135018) do
     t.integer "upvotes", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "slug"
+    t.index ["slug"], name: "index_posts_on_slug", unique: true
   end
 
   add_foreign_key "comments", "posts"

@@ -2,6 +2,9 @@ class Post < ApplicationRecord
   has_and_belongs_to_many :categories
   has_many :comments, dependent: :destroy
 
+  extend FriendlyId
+  friendly_id :title, use: :slugged
+
   validates :title, presence: true, length: { in: 6..255}
   validates :description, presence: true, length: { in: 40..1000}
   validates :url, presence: true, length: { maximum: 255 }
@@ -22,5 +25,9 @@ class Post < ApplicationRecord
 
   def upvote
     update_column(:upvotes, upvotes + 1)
+  end
+
+  def normalize_friendly_id(string)
+    super[0..80]
   end
 end
