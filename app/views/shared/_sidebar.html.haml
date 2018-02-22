@@ -2,6 +2,6 @@
   %ul.vertical.menu
     %li
       %a{href: '/'} All
-    - Category.friendly.all.each do |category|
+    - Category.all.each do |category|
       %li
         = link_to category.name, category
