@@ -12,9 +12,9 @@ class PostsController < ApplicationController
   end
 
   def autofill
+    @post = Post.new
     begin
       page = MetaInspector.new(link_params[:url])
-      @post = Post.new
       @post.title = page.title
       @post.description = page.best_description
       @post.url = page.url
