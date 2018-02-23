@@ -31,4 +31,16 @@ RSpec.describe Category, type: :model do
     duplicate_category = FactoryBot.build(:category, name: unique_categroy.name)
     expect(duplicate_category).not_to be_valid
   end
+
+  describe 'slug' do
+    let!(:category) { FactoryBot.create(:category) }
+
+    it 'updates the slug if the name was changed' do
+      new_name = 'cars'
+      category.name = new_name
+      category.save
+
+      expect(category.slug).to eq(new_name.parameterize)
+    end
+  end
 end

@@ -31,4 +31,8 @@ class Post < ApplicationRecord
   def normalize_friendly_id(string)
     super[0..80]
   end
+
+  def should_generate_new_friendly_id?
+    title_changed?
+  end
 end

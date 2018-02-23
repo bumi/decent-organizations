@@ -85,4 +85,16 @@ RSpec.describe Post, type: :model do
     end
   end
 
+  describe 'slug' do
+    let(:post) { FactoryBot.create(:post_with_categories) }
+
+    it 'updates the slug if the name was changed' do
+      new_title = "New title for post"
+      post.title = new_title
+      post.save
+
+      expect(post.slug).to eq(new_title.parameterize)
+    end
+  end
+
 end
