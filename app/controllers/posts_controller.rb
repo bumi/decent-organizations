@@ -11,21 +11,18 @@ class PostsController < ApplicationController
   def add
   end
 
-  def autofill
+  def new
     @post = Post.new
+    render 'new' and return unless link_params[:url]
     begin
       page = MetaInspector.new(link_params[:url])
       @post.title = page.title
       @post.description = page.best_description
       @post.url = page.url
     rescue MetaInspector::TimeoutError, MetaInspector::RequestError, MetaInspector::ParserError
-      redirect_to new_post_path and return
+      render 'new' and return
     end
     render 'new'
-  end
-
-  def new
-    @post = Post.new
   end
 
   def create

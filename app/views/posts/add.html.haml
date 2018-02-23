@@ -4,7 +4,7 @@
     .cell
       %h2 Add new post
     .cell
-      = form_tag autofill_posts_path do
+      = form_tag(new_post_path, method: :get) do
         = label_tag :url, 'URL'
         = text_field_tag :url
         = submit_tag 'Save', class: 'button'

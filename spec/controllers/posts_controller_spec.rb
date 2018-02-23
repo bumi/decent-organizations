@@ -99,24 +99,24 @@ RSpec.describe PostsController, type: :controller do
     end
   end
 
-  describe '#autofill' do
-    it 'redirects to /new when there is no url provided' do
-      post :autofill, params: { url: '' }
-      expect(response).to redirect_to(new_post_path)
+  describe 'POST #new' do
+    it 'renders new template when there is no url provided' do
+      post :new, params: { url: '' }
+      expect(response).to render_template('new')
     end
 
-    it 'redirects to /new when the provided url is not readable' do
-      post :autofill, params: { url: 'asdf' }
-      expect(response).to redirect_to(new_post_path)
+    it 'renders new template when the provided url is not readable' do
+      post :new, params: { url: 'asdf' }
+      expect(response).to render_template('new')
     end
 
     it 'redirects to new when a valid url is provided' do
-      post :autofill, params: { url: 'https://google.de' }
+      post :new, params: { url: 'https://google.de' }
       expect(response).to render_template('new')
     end
 
     it 'prefills the post variable when a valid url is provided' do
-      post :autofill, params: { url: 'https://google.de' }
+      post :new, params: { url: 'https://google.de' }
       expect(assigns(:post).title).not_to be_nil
     end
   end

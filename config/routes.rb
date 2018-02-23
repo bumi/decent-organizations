@@ -7,7 +7,6 @@ Rails.application.routes.draw do
     end
     collection do
       get 'add'
-      post 'autofill'
     end
   end
   resources :categories, only: [:show]
