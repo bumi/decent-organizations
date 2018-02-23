@@ -15,7 +15,7 @@ class PostsController < ApplicationController
     @post = Post.new
     render 'new' and return unless link_params[:url]
     begin
-      page = MetaInspector.new(link_params[:url])
+      page = MetaInspector.new(link_params[:url], connection_timeout: 5, read_timeout: 5, retries: 1)
       @post.title = page.title
       @post.description = page.best_description
       @post.url = page.url
