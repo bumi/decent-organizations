@@ -33,6 +33,6 @@ class Post < ApplicationRecord
   end
 
   def should_generate_new_friendly_id?
-    title_changed?
+    slug.blank? || title_changed?
   end
 end

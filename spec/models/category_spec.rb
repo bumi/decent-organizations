@@ -42,5 +42,13 @@ RSpec.describe Category, type: :model do
 
       expect(category.slug).to eq(new_name.parameterize)
     end
+
+    it 'creates a slug if the slug is blank' do
+      original_slug = category.slug
+      category.slug = nil
+      category.save
+
+      expect(category.slug).to eq(original_slug)
+    end
   end
 end

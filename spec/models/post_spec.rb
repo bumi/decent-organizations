@@ -95,6 +95,14 @@ RSpec.describe Post, type: :model do
 
       expect(post.slug).to eq(new_title.parameterize)
     end
+
+    it 'creates a slug if the slug is blank' do
+      original_slug = post.slug
+      post.slug = nil
+      post.save
+
+      expect(post.slug).to eq(original_slug)
+    end
   end
 
 end

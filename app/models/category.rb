@@ -9,6 +9,6 @@ class Category < ApplicationRecord
   validates :slug, presence: true
 
   def should_generate_new_friendly_id?
-    name_changed?
+    slug.blank? || name_changed?
   end
 end
