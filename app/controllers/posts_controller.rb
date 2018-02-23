@@ -8,8 +8,21 @@ class PostsController < ApplicationController
     @upvote_comment = Comment.new
   end
 
+  def add
+  end
+
   def new
     @post = Post.new
+    render 'new' and return unless link_params[:url]
+    begin
+      page = MetaInspector.new(link_params[:url], connection_timeout: 5, read_timeout: 5, retries: 1)
+      @post.title = page.title
+      @post.description = page.best_description
+      @post.url = page.url
+    rescue MetaInspector::TimeoutError, MetaInspector::RequestError, MetaInspector::ParserError
+      render 'new' and return
+    end
+    render 'new'
   end
 
   def create
@@ -55,6 +68,10 @@ class PostsController < ApplicationController
 
   def comment_params
     params.require(:comment).permit(:text, :name)
+  end
+
+  def link_params
+    params.permit(:url)
   end
 
 end

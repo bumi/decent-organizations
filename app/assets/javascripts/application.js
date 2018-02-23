@@ -19,9 +19,14 @@ $(function(){
   $(document).foundation(); 
   $('#upvote-button').on('click', toggleUpvoteForm)
   $('#js-cancel-upvote-button').on('click', toggleUpvoteForm)
+  $('#display-loading-overlay').on('click', showLoadingOverlay)
 
   function toggleUpvoteForm() {
     $('#js-upvote-form').toggleClass('asHidden')
     $('#upvote-button').toggle()
+  }
+
+  function showLoadingOverlay() {
+    $('#loading-overlay').removeClass('as-hidden')
   }
 });

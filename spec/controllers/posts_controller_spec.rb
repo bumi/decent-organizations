@@ -21,8 +21,6 @@ RSpec.describe PostsController, type: :controller do
   end
 
   describe 'GET #new' do
-    let!(:post) { FactoryBot.create(:post_with_categories) }
-
     it 'returns http success' do
       get :new
       expect(response).to have_http_status(:success)
@@ -31,6 +29,18 @@ RSpec.describe PostsController, type: :controller do
     it 'renders the edit template' do
       get :new
       expect(response).to render_template('new')
+    end
+  end
+
+  describe 'GET #add' do
+    it 'returns http success' do
+      get :add
+      expect(response).to have_http_status(:success)
+    end
+
+    it 'renders the add template' do
+      get :add
+      expect(response).to render_template('add')
     end
   end
 
@@ -86,6 +96,28 @@ RSpec.describe PostsController, type: :controller do
       patch :update, params: { id: post.id, post: post_attributes }
       post.reload
       expect(post.title).to eq(new_title)
+    end
+  end
+
+  describe 'POST #new' do
+    it 'renders new template when there is no url provided' do
+      post :new, params: { url: '' }
+      expect(response).to render_template('new')
+    end
+
+    it 'renders new template when the provided url is not readable' do
+      post :new, params: { url: 'asdf' }
+      expect(response).to render_template('new')
+    end
+
+    it 'redirects to new when a valid url is provided' do
+      post :new, params: { url: 'https://google.de' }
+      expect(response).to render_template('new')
+    end
+
+    it 'prefills the post variable when a valid url is provided' do
+      post :new, params: { url: 'https://google.de' }
+      expect(assigns(:post).title).not_to be_nil
     end
   end
 
