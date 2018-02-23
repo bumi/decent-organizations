@@ -1,11 +1,17 @@
 Rails.application.routes.draw do
   root "posts#index"
+
+  # Static Pages
+  get 'about', to: 'pages#about'
+  get 'idea', to: 'pages#idea'
+
   resources :posts do
     resources :comments, only: [:create]
     member do
       put :upvote
     end
   end
-  resources :categories, only: [:show]
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  resources :categories, only: [:show], path: '/'
+  
+
 end
