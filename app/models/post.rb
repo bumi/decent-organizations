@@ -2,11 +2,15 @@ class Post < ApplicationRecord
   has_and_belongs_to_many :categories
   has_many :comments, dependent: :destroy
 
+  extend FriendlyId
+  friendly_id :title, use: [:slugged, :history]
+
   validates :title, presence: true, length: { in: 6..255}
   validates :description, presence: true, length: { in: 40..1000}
   validates :url, presence: true, length: { maximum: 255 }
   validates :categories, presence: true
   validates :upvotes, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
+  validates :slug, presence: true
   validate :valid_url
   
   default_scope { order("created_at DESC") }
@@ -22,5 +26,13 @@ class Post < ApplicationRecord
 
   def upvote
     update_column(:upvotes, upvotes + 1)
+  end
+
+  def normalize_friendly_id(string)
+    super[0..80]
+  end
+
+  def should_generate_new_friendly_id?
+    title_changed?
   end
 end

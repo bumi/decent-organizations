@@ -1,14 +1,10 @@
 class PostsController < ApplicationController
   def index
-    if params[:category]
-      @posts = Category.find(params[:category]).posts.limit(50).to_a
-    else
-      @posts = Post.limit(50).to_a
-    end
+    @posts = Post.limit(50).to_a
   end
 
   def show
-    @post = Post.find(params[:id])
+    @post = Post.friendly.find(params[:id])
     @upvote_comment = Comment.new
   end
 
@@ -26,11 +22,11 @@ class PostsController < ApplicationController
   end
 
   def edit
-    @post = Post.find(params[:id])
+    @post = Post.friendly.find(params[:id])
   end
 
   def update
-    @post = Post.find(params[:id])
+    @post = Post.friendly.find(params[:id])
 
     if @post.update(post_params)
      redirect_to @post
@@ -40,7 +36,7 @@ class PostsController < ApplicationController
   end
 
   def upvote
-    @post = Post.find(params[:id])
+    @post = Post.friendly.find(params[:id])
     @upvote_comment = Comment.new(comment_params.merge(post: @post))
     if @upvote_comment.save
       @post.upvote
