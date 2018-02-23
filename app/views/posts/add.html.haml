@@ -7,5 +7,7 @@
       = form_tag(new_post_path, method: :get) do
         = label_tag :url, 'URL'
         = text_field_tag :url
-        = submit_tag 'Save', class: 'button'
+        = submit_tag 'Save', class: 'button', id: 'display-loading-overlay'
         
+#loading-overlay.loading-overlay.as-hidden
+  .loading-spinner
