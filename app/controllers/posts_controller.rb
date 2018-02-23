@@ -8,6 +8,22 @@ class PostsController < ApplicationController
     @upvote_comment = Comment.new
   end
 
+  def add
+  end
+
+  def autofill
+    begin
+      page = MetaInspector.new(link_params[:url])
+      @post = Post.new
+      @post.title = page.title
+      @post.description = page.best_description
+      @post.url = page.url
+    rescue MetaInspector::TimeoutError, MetaInspector::RequestError, MetaInspector::ParserError
+      redirect_to new_post_path and return
+    end
+    render 'new'
+  end
+
   def new
     @post = Post.new
   end
@@ -55,6 +71,10 @@ class PostsController < ApplicationController
 
   def comment_params
     params.require(:comment).permit(:text, :name)
+  end
+
+  def link_params
+    params.permit(:url)
   end
 
 end

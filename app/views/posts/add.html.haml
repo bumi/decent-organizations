@@ -1,0 +1,11 @@
+- content_for :title, "New Entry - Decent Organizations Directory"
+.grid-container
+  .grid-x
+    .cell
+      %h2 Add new post
+    .cell
+      = form_tag autofill_posts_path do
+        = label_tag :url, 'URL'
+        = text_field_tag :url
+        = submit_tag 'Save', class: 'button'
+        

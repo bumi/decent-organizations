@@ -5,6 +5,10 @@ Rails.application.routes.draw do
     member do
       put :upvote
     end
+    collection do
+      get 'add'
+      post 'autofill'
+    end
   end
   resources :categories, only: [:show]
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
