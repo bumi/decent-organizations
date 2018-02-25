@@ -1,0 +1,13 @@
+language: ruby
+bundler_args: --without development staging
+cache: bundler
+rvm:
+  - 2.5.0
+before_script:
+  - bundle exec rake db:create
+  - bundle exec rake db:migrate
+sudo: false
+branches:
+  only:
+  - master
+script: 'bundle exec rake spec'
