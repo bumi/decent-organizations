@@ -23,6 +23,7 @@
     .cell.small-12.medium-3
       - @related_posts.each do |related_post|
         .a-post
+          %small= related_post.categories.map(&:name).join(", ")
           %h5
             = link_to related_post.title, related_post
           %p= simple_format(auto_link(related_post.description))
