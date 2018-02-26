@@ -105,4 +105,63 @@ RSpec.describe Post, type: :model do
     end
   end
 
+  describe '#related_posts' do
+    let(:first_category) { FactoryBot.create(:category, name: 'blogs') }
+    let(:second_category) { FactoryBot.create(:category, name: 'articles') }
+    let(:original_post) { FactoryBot.create(:post_with_categories, categories: [first_category]) }
+    let(:posts) { FactoryBot.create_list(:post_with_categories, 3) }
+
+    context 'no related posts available' do
+
+      it 'returns an empty collection if no related posts were found' do
+        expect(original_post.related_posts).to eq([])
+      end
+
+    end
+
+    context 'less then three relaced posts available' do
+
+      it 'returns less posts if less then three related are available' do
+        posts.first.categories << first_category
+        expect(original_post.related_posts).to eq([posts.first])
+      end
+      
+    end
+
+    context 'three or more related posts available' do
+      before do
+        posts.each { |post| post.categories << first_category }
+      end
+
+      it 'returns three related posts if at least three are available' do
+        additional_post = FactoryBot.create(:post_with_categories, categories: [first_category])
+        expect(original_post.related_posts.length).to eq(3)
+      end
+
+      it 'does not include the original post in the collection' do
+        expect(original_post.related_posts).not_to include(original_post)
+      end
+
+      it 'does not return duplicate posts' do
+        posts.first.categories =[FactoryBot.create(:category)]
+        posts.second.categories << second_category
+        original_post.categories << second_category
+        expect(original_post.related_posts.map(&:id)).not_to include(posts.first.id)
+      end
+
+    end
+
+    context 'related posts for multiple matching categories' do
+      before do
+        original_post.categories << second_category
+        posts.first.categories << first_category
+        posts.second.categories << second_category
+        posts.third.categories << second_category
+      end
+
+      it 'find related posts with just one of the original categories matching' do
+        expect(original_post.related_posts).to match_array(posts)
+      end
+    end
+  end
 end

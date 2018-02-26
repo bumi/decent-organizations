@@ -35,4 +35,13 @@ class Post < ApplicationRecord
   def should_generate_new_friendly_id?
     slug.blank? || title_changed?
   end
+
+  def related_posts(limit = 3)
+    Post.joins(:categories)
+      .where(categories: {id: category_ids})
+      .where.not(id: id)
+      .offset(SecureRandom.random_number(Post.count - limit - 1))
+      .distinct
+      .limit(limit)
+  end
 end
