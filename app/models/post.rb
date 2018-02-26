@@ -40,7 +40,6 @@ class Post < ApplicationRecord
     Post.joins(:categories)
       .where(categories: {id: category_ids})
       .where.not(id: id)
-      .offset(SecureRandom.random_number(Post.count - limit - 1))
       .distinct
       .limit(limit)
   end
