@@ -37,10 +37,11 @@ class Post < ApplicationRecord
   end
 
   def related_posts(limit = 3)
-    Post.joins(:categories)
+    Post
+      .joins(:categories)
       .where(categories: {id: category_ids})
       .where.not(id: id)
       .distinct
-      .limit(limit)
+      .sample(limit)
   end
 end
