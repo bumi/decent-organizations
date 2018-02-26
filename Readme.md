@@ -4,6 +4,23 @@ decent organizations is a directory of tools and general resources for decent or
 Think of a "producthunt.com" like website that allows us to discover, share and discuss any related links/resources around the topic of decent organizations.
 
 
+## Installation
+
+### Requirements
+
+* Ruby (some recent version)
+* PostgreSQL (some recent version)
+
+### Getting Started
+
+    $ cp config/database.yml.sample config/database.yml
+    $ vim config/database.yml # edit your local config if required
+    $ bundle install
+    $ rake db:create 
+    $ rake db:migrate
+    $ rails server
+
+
 ## Features
 
 ### Browse entries
