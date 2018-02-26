@@ -1,0 +1,13 @@
+- content_for :title, "New Entry - Decent Organizations Directory"
+.grid-container
+  .grid-x
+    .cell
+      %h2 Add new post
+    .cell
+      = form_tag(new_post_path, method: :get) do
+        = label_tag :url, 'URL'
+        = text_field_tag :url
+        = submit_tag 'Save', class: 'button', id: 'display-loading-overlay'
+        
+#loading-overlay.loading-overlay.as-hidden
+  .loading-spinner

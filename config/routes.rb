@@ -10,6 +10,9 @@ Rails.application.routes.draw do
     member do
       put :upvote
     end
+    collection do
+      get 'add'
+    end
   end
   resources :categories, only: [:show], path: '/'
   
