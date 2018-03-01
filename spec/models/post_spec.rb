@@ -146,7 +146,9 @@ RSpec.describe Post, type: :model do
         posts.first.categories =[FactoryBot.create(:category)]
         posts.second.categories << second_category
         original_post.categories << second_category
-        expect(original_post.related_posts.map(&:id)).not_to include(posts.first.id)
+        expect(original_post.related_posts.map(&:id)).to satisfy("only include distinct post IDs") do |ids_array|
+          ids_array.length == ids_array.uniq.length
+        end
       end
 
     end

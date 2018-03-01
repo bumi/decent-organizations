@@ -37,11 +37,6 @@ class Post < ApplicationRecord
   end
 
   def related_posts(limit = 3)
-    Post
-      .joins(:categories)
-      .where(categories: {id: category_ids})
-      .where.not(id: id)
-      .distinct
-      .sample(limit)
+    Post.unscoped.joins(:categories).order('RANDOM()').where.not(id: id).where(categories: { id: category_ids}).limit(limit).group(:id)
   end
 end
