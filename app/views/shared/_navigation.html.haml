@@ -1,12 +1,14 @@
-.top-bar
-  .top-bar-left
-    %ul.menu
-      %li
-        %strong
-          %a{href: '/'} Decent Organisations
-      %li
-        = link_to 'About', about_path
-      %li
-        = link_to 'What are decent organisations?', idea_path
-  .top-bar-right
-    %a.button{href: add_posts_path} Add New
+.bNavigation
+  .grid-container
+    .grid-x.grid-padding-x
+      .cell.small-12.medium-4.align-center
+        = link_to image_tag("logo.svg", alt: "Decent Organisations Logo", class: 'bNavigation-Logo'), root_path
+      .cell.samll-12.medium-8.align-center
+        .bNavigation-Nav
+          .aInlineNavigation
+            %li.aInlineNavigation-Item
+              = link_to 'About', about_path, class: 'aInlineNavigation-Link'
+            %li.aInlineNavigation-Item
+              = link_to 'What are decent organisations?', idea_path, class: 'aInlineNavigation-Link'
+            %li.aInlineNavigation-Item
+              = link_to 'Add new post', add_posts_path, class: 'aButton asSmall asInline'
