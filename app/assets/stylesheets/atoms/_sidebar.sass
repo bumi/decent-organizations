@@ -1,2 +1,19 @@
-.a-sidebar
-  margin-top: 40px
+.aSidebar
+  list-style-type: none
+
+  &-Item
+    position: relative
+    border-bottom: 1px solid $light-grey
+    
+    &:first-child
+      border-top: 1px solid $light-grey
+
+    &.asActive
+      &:after
+        position: absolute
+        content: ''
+        width: 4px
+        height: 100%
+        background-color: $accent-color
+        left: 0
+        top: 0
