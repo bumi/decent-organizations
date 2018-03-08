@@ -6,5 +6,8 @@
     .cell.small-12.medium-9
       %h2= @category.name
       = @category.description
-      .a-postlist
-        = render @category.posts
+      .bPostWrapper
+        - @posts.each do |post|
+          .bPostWrapper-Post
+            = render post
+      = will_paginate(@posts)

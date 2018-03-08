@@ -3,6 +3,8 @@
     .cell.small-12.medium-3
       = render 'shared/sidebar'
     .cell.small-12.medium-9
-      .a-postlist
-        = render @posts
-        = will_paginate @posts
+      .bPostWrapper
+        - @posts.each do |post|
+          .bPostWrapper-Post
+            = render post
+      = will_paginate(@posts)
