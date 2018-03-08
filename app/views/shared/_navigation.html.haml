@@ -1,11 +1,16 @@
 .bNavigation
-  .grid-container
+  .grid-container.bNavigation-Content
     .grid-x.grid-padding-x
-      .cell.small-12.medium-4.align-center
-        = link_to image_tag("logo.svg", alt: "Decent Organisations Logo", class: 'bNavigation-Logo'), root_path
-      .cell.samll-12.medium-8.align-center
+      .cell.small-6.medium-3.align-center
+        = link_to image_tag("logo.svg", alt: "Decent Organisations Logo"), root_path
+      .cell.small-6.hide-for-medium
+        .title-bar.bNavigation-MobileNav{ data: { responsive: { toggle: "siteNavigation" } }, hide: { for: "medium" } }
+          .aMobileMenuToggle{ data: { toggle: "siteNavigation" } }
+            %span.aMobileMenuToggle-Text Menu
+            .menu-icon
+      .cell.small-12.medium-9
         .bNavigation-Nav
-          .aInlineNavigation
+          .aInlineNavigation#siteNavigation
             %li.aInlineNavigation-Item
               = link_to 'About', about_path, class: 'aInlineNavigation-Link'
             %li.aInlineNavigation-Item
