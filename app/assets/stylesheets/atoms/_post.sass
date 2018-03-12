@@ -1,13 +1,14 @@
 .aPost
-  padding-right: 90px
+  @include breakpoint(large)
+    padding-right: 90px
 
   &-Category
     font-size: $font-size-small
     color: $grey
 
   &-Title
-    margin-top: 7px 
-    margin-bottom: 12px
+    margin-top: 0 
+    margin-bottom: 5px
     font-size: $font-size-medium  
     font-weight: $font-weight-bold
 
@@ -19,4 +20,13 @@
         color: $accent-color
 
   &-Teaser
+    display: none
+    color: $grey
+    
+    @include breakpoint(medium)
+      display: block
+
+  &-Meta
+    margin-top: 20px
+    font-size: $font-size-small 
     color: $grey
