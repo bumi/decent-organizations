@@ -1,9 +1,9 @@
 .aPost
   .grid-x
     .cell.small-2
-      .a-post-votes
-        %span= post.upvotes
-        %span upvotes
+      .aVoteCount
+        %span.aVoteCount-Icon ▲
+        %span.aVoteCount-Votes= post.upvotes
     .cell.small-10
       .aPost-Category
         %small= post.categories.map(&:name).join(", ")
