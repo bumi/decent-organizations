@@ -14,4 +14,4 @@
       .aPost-Meta
         %span.aPostMeta
           = link_to "#{post.comments.count} Comments", post_path(post), class: 'aPostMeta-Link'
-          = " - Added #{time_ago_in_words(post.created_at)} ago"
+          = " ● Added #{time_ago_in_words(post.created_at)} ago"
