@@ -1,7 +1,8 @@
-.a-post-votes
-  %span#js-upvote-count= post.upvotes
-  %span upvotes
-  %a.button.hollow.secondary#upvote-button{href: 'javascript:void(0)'} Upvote
+.aVoteCount.asColored
+  %span.aVoteCount-Icon  ▲
+  %span.aVoteCount-Votes#js-upvote-count= post.upvotes
+  .aVoteCount-Button
+    %a.aButton.asHollow#upvote-button{href: 'javascript:void(0)'} Upvote
 
   .cell
     #js-upvote-form.a-floating-form.asHidden
