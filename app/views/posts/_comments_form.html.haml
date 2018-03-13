@@ -1,9 +1,14 @@
-.cell
-  %h4 Add your comment
-.cell
-  = form_for(Comment.new, url: post_comments_path(post.id)) do |f|
-    = f.label :name, 'Name'
-    = f.text_field :name
-    = f.label :text, 'Text'
-    = f.text_area :text
-    = f.submit 'Save', class: 'button'
+.cell.small-12
+  .bCommentsForm
+    = form_for(Comment.new, url: post_comments_path(post.id)) do |f|
+      .grid-x
+        .cell.small-12
+          = f.label :text, 'Text'
+          = f.text_area :text, class: 'aInput bCommentsForm-TextArea'
+        .cell.small-12.medium-6
+          .bCommentsForm-Name
+            = f.label :name, 'Name'
+            = f.text_field :name, class: 'aInput noMarginMedium'
+        .cell.small-12.medium-6
+          .bCommentsForm-Button
+            = f.submit 'Add Comment', class: 'aButton'

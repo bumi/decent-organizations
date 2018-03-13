@@ -1,0 +1,30 @@
+.aInlineNavigation
+  margin: 0
+  padding: 0
+  list-style-type: none
+  width: 100%
+  text-align: center
+
+  @include breakpoint(medium)
+    text-align: right
+
+  &-Item
+    display: block
+    padding: 20px 10px
+    
+    @include breakpoint(medium)
+      display: inline
+      padding: 0
+      margin-right: 30px
+
+      &:last-child
+        margin-right: 0
+
+  &-Link
+    color: $white
+    text-decoration: none
+
+    &:hover
+      text-decoration: underline
+      color: $white
+

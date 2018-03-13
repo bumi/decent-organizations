@@ -1,0 +1,25 @@
+.aCategoryInfo
+  display: none
+  background-color: $white
+
+  @include breakpoint(large)
+    display: block
+
+  &-Content
+    padding: 20px 0
+    height: 100%
+    background-image: image_url('bg_category_info.jpg')
+    background-position: top right
+    background-size: auto 100%
+    background-repeat: no-repeat
+    line-height: 1.7
+
+  &-Headline
+    margin: 0
+
+  &-Close
+    width: 100%
+    text-align: center
+    font-size: 3rem
+    line-height: 1
+

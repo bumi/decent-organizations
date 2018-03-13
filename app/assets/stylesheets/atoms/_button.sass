@@ -1,0 +1,38 @@
+.aButton
+  display: inline-block
+  padding: 8px 15px
+  background-color: $accent-color
+  color: $white
+  text-transform: uppercase
+  text-decoration: none
+  line-height: 1.5
+  box-sizing: border-box
+  transition: .5s
+  border-radius: 4px
+  cursor: pointer
+  height: 40px
+
+  &:hover
+    color: $white
+    background-color: darken($accent-color, 10)
+
+  &.asSmall
+    font-size: 0.9rem
+
+  &.asInline
+    display: inline
+    white-space: no-wrap
+
+  &.asHollow
+    background-color: transparent
+    border: 1px solid $accent-color
+    color: $accent-color
+
+    &:hover
+      color: $white
+      background-color: $accent-color
+
+  &.asFullbleed
+    display: block
+    width: 100%
+    text-align: center

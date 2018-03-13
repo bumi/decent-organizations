@@ -1,30 +1,47 @@
 - content_for :title, @post.title
 .grid-container
-  .grid-x
+  .grid-x.grid-padding-x
     .cell
       -if flash[:alert]
-        .callout.alert= flash[:alert]
+        .aCallout.asAlert= flash[:alert]
       -if flash[:notice]
-        .callout.success= flash[:notice]
-    .cell.small-12.medium-9
-      .a-post
-        .grid-x
-          .cell.small-12.small-offset-11
-            %a{href: edit_post_path(@post)} Edit
-          .cell.small-2
-            = render 'upvotes', post: @post, comment: @upvote_comment
-          .cell.small-10
-            .a-post-content
-              %small= @post.categories.map(&:name).join(", ")
-              %h3= @post.title
-              = simple_format(auto_link(@post.description))
-              %a{href: @post.url}= @post.url
-      = render 'comments', post: @post
-    .cell.small-12.medium-3
-      .b-related_posts
+        .aCallout.asSuccess= flash[:notice]
+    .cell.small-12.large-8
+      .bPostWrapper
+        .bPostWrapper-Post
+          .aPost
+            .grid-x
+              .cell.small-12.medium-2
+                = render 'upvotes', post: @post, comment: @upvote_comment
+              .cell.small-12.medium-10
+                .aPost-Category
+                  %small= @post.categories.map(&:name).join(", ")
+                %h3.aPost-Title.asLarge= @post.title
+                .aPost-Description
+                  = simple_format(auto_link(@post.description))
+                = link_to @post.url, class: "aPostUrl" do
+                  %i.fas.fa-link.aPostUrl-Icon
+                  %span.aPostUrl-aPostUrl= @post.url
+                .aPost-Meta
+                  %span.aPostMeta
+                    = "Added #{time_ago_in_words(@post.created_at)} ago - "
+                    = link_to  "Edit", edit_post_path(@post), class: 'aPostMeta-Link'
+        .bPostWrapper-Post
+          .grid-x
+            .cell.small-12.medium-10.medium-offset-2
+              = render 'comments', post: @post
+
+    .cell.small-12.large-4
+      .bPostWrapper
+        %h4.bPostWrapper-Title Related Posts
         - @related_posts.each do |related_post|
-          .a-post
-            %small= related_post.categories.map(&:name).join(", ")
-            %h5
-              = link_to related_post.title, related_post
-            %p= simple_format(auto_link(related_post.description))
+          .bPostWrapper-Post
+            .aPost
+              .aPost-Category
+                %small= related_post.categories.map(&:name).join(", ")
+              .aPost-Title
+                = link_to related_post.title, related_post
+              .aPost-Teaser
+                = simple_format(auto_link(related_post.description),{}, wrapper_tag: "span")
+
+

@@ -1,12 +1,17 @@
-.a-post
+.aPost
   .grid-x
     .cell.small-2
-      .a-post-votes
-        %span= post.upvotes
-        %span upvotes
+      .aVoteCount
+        %span.aVoteCount-Icon ▲
+        %span.aVoteCount-Votes= post.upvotes
     .cell.small-10
-      .a-post-content
+      .aPost-Category
         %small= post.categories.map(&:name).join(", ")
-        %h3
-          %a{href: post_path(post)}= post.title
+      %h3.aPost-Title
+        = link_to post.title, post_path(post)
+      .aPost-Teaser
         %span= post.description
+      .aPost-Meta
+        %span.aPostMeta
+          = link_to "#{post.comments.count} Comments", post_path(post), class: 'aPostMeta-Link'
+          = " ● Added #{time_ago_in_words(post.created_at)} ago"

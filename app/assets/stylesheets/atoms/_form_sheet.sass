@@ -1,0 +1,27 @@
+.aFormSheet
+  padding: 20px
+  margin-top: 20px
+  background-color: $white
+  background-image: image_url('bg_form.jpg')
+  background-repeat: no-repeat
+  background-position: top left
+  background-size: 100% auto
+  border-radius: 4px
+
+  @include breakpoint(medium)
+    padding: 30px 120px
+
+  &-InlineInput
+    @include breakpoint(medium)
+      margin-right: 20px
+
+  &-Button
+    height: 100%
+
+    @include breakpoint(medium)
+      display: flex
+      align-items: flex-end
+      justify-content: flex-end
+
+  &-Categories
+    margin-bottom: 20px

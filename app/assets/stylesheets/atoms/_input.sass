@@ -1,0 +1,18 @@
+.aInput
+  appearance: none
+  -webkit-appearance: none
+  -moz-appearance: none
+  border-radius: 4px
+  border: 1px solid $blueish-grey-50
+  box-shadow: none
+  height: 40px
+
+  &:focus
+    box-shadow: 0px 0px 5px rgba($accent-color, 0.2)
+
+  &.noMarginMedium
+    @include breakpoint(medium)
+      margin-bottom: 0
+
+  &.asTextarea
+    height: 100px
