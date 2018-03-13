@@ -1,13 +1,21 @@
 - content_for :title, "New Entry - Decent Organizations Directory"
 .grid-container
-  .grid-x
-    .cell
-      %h2 Add new post
-    .cell
-      = form_tag(new_post_path, method: :get) do
-        = label_tag :url, 'URL'
-        = text_field_tag :url
-        = submit_tag 'Save', class: 'button', id: 'display-loading-overlay'
+  .grid-x.grid-padding-x
+    .cell.small-12
+      .aFormSheet
+        .grid-x
+          .cell.small-12
+            %h2 Add new post
+          .cell.small-12
+            = form_tag(new_post_path, method: :get) do
+              .grid-x
+                .cell.small-12.medium-10
+                  .aFormSheet-InlineInput
+                    = label_tag :url, 'Paste URL here'
+                    = text_field_tag :url, nil, class: 'aInput noMarginMedium'
+                .cell.small-12.medium-2
+                  .aFormSheet-Button
+                    = submit_tag 'Save', class: 'aButton', id: 'display-loading-overlay'
         
 #loading-overlay.loading-overlay.as-hidden
   .loading-spinner
