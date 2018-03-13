@@ -30,4 +30,6 @@
 
 
         .bPostWrapper-Post
-          = render 'comments', post: @post
+          .grid-x
+            .cell.small-12.medium-10.medium-offset-2
+              = render 'comments', post: @post
