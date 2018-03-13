@@ -42,6 +42,6 @@
               .aPost-Title
                 = link_to related_post.title, related_post
               .aPost-Teaser
-                %p= simple_format(auto_link(related_post.description))
+                = simple_format(auto_link(related_post.description),{}, wrapper_tag: "span")
 
 
