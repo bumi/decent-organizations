@@ -1,11 +1,24 @@
 - content_for :title, @category.name
+- if @category.description.present?
+  .aCategoryInfo{ data: { closable: true } }
+    .grid-container
+      .grid-x.grid-padding-x
+        .cell.small-12
+          .aCategoryInfo-Content
+            .grid-x
+              .cell.small-12.medium-3
+                %h2.aCategoryInfo-Headline= @category.name
+              .cell.small-12.medium-7
+                = @category.description
+              .cell.small-12.medium-2
+                .aCategoryInfo-Close
+                  %button{ data: { close: true } }
+                    %span &times;
 .grid-container
   .grid-x
     .cell.small-12.medium-3
       = render 'shared/sidebar'
     .cell.small-12.medium-9
-      %h2= @category.name
-      = @category.description
       .bPostWrapper
         - @posts.each do |post|
           .bPostWrapper-Post
