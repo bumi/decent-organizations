@@ -1,0 +1,19 @@
+.bUpvoteAction
+  position: relative
+  display: flex
+  align-items: center
+  margin-bottom: 20px
+  text-align: center
+
+  @include breakpoint(medium)
+    flex-direction: column
+    margin-bottom: 0
+  
+  &-Count
+    margin-right: 20px
+
+    @include breakpoint(medium)
+      margin-right: 0
+
+  &-Button
+    font-size: $font-size-small

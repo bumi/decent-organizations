@@ -1,22 +1,23 @@
-.aVoteCount.asColored
-  %span.aVoteCount-Icon  ▲
-  %span.aVoteCount-Votes#js-upvote-count= post.upvotes
-  .aVoteCount-Button
+.bUpvoteAction
+  .bUpvoteAction-Count
+    .aVoteCount.asColored
+      %span.aVoteCount-Icon  ▲
+      %span.aVoteCount-Votes#js-upvote-count= post.upvotes
+  .bUpvoteAction-Button
     %a.aButton.asHollow#upvote-button{href: 'javascript:void(0)'} Upvote
 
-  .cell
-    #js-upvote-form.aFloatingForm.asHidden
-      - if comment.errors.any?
-        - comment.errors.full_messages.each do |message|
-          .aCallout.asAlert
-            = message
-      = form_for comment, :url => { :action => "upvote" }, :html => { :method => :put } do |f|
-        = f.label :name, 'Name'
-        = f.text_field :name, id: "upvote-comment-name", class: 'aInput'
-        = f.label :text, 'Why are you upvoting?'
-        = f.text_area :text, id: "upvote-comment-text", class: 'aInput a-floating-form--text'
-        = f.submit 'Save', class: 'aButton'
-        %a.aButton.asHollow#js-cancel-upvote-button{href: 'javascript:void(0)'} Cancel
+  #js-upvote-form.aFloatingForm.asHidden
+    - if comment.errors.any?
+      - comment.errors.full_messages.each do |message|
+        .aCallout.asAlert
+          = message
+    = form_for comment, :url => { :action => "upvote" }, :html => { :method => :put } do |f|
+      = f.label :name, 'Name'
+      = f.text_field :name, id: "upvote-comment-name", class: 'aInput'
+      = f.label :text, 'Why are you upvoting?'
+      = f.text_area :text, id: "upvote-comment-text", class: 'aInput aFloatingForm-TextArea'
+      = f.submit 'Save', class: 'aButton'
+      %a.aButton.asHollow#js-cancel-upvote-button{href: 'javascript:void(0)'} Cancel
 
 - if comment.errors.present?
   :javascript
