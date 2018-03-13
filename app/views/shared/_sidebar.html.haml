@@ -3,12 +3,12 @@
     %li.aSidebar-Item{ class: ('asActive' unless @category.present?) }
       = link_to root_path, class: 'aSidebarItem' do
         .aIconWithText
-          = image_tag"icons/Icon-All.png", class: 'aIconWithText-Icon'
+          = inline_svg "icons/Icon-All.svg", class: 'aIconWithText-Icon'
           %span.aIconWithText-Text All
     - Category.all.each do |category|
-      - icon = asset_exist?("icons/Icon-#{category.name}.png") ? "icons/Icon-#{category.name}.png" : "icons/Icon-All.png"
+      - icon = asset_exist?("icons/Icon-#{category.name}.svg") ? "icons/Icon-#{category.name}.svg" : "icons/Icon-All.svg"
       %li.aSidebar-Item{ class: ('asActive' if is_active_category(category)) }
         = link_to category, class: 'aSidebarItem' do
           .aIconWithText
-            = image_tag icon, class: 'aIconWithText-Icon'
+            = inline_svg "icons/Icon-#{category.name}.svg", class: 'aIconWithText-Icon'
             %span.aIconWithText-Text= category.name

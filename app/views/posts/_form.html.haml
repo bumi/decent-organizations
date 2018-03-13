@@ -19,6 +19,6 @@
               = b.check_box(class: 'aCustomCheckbox-Checkbox')
               .aCustomCheckbox-CustomLabel
                 .aIconWithText
-                  = image_tag icon, class: 'aIconWithText-Icon'
+                  = inline_svg "icons/Icon-#{b.text}.svg", class: 'aIconWithText-Icon'
                   %span.aIconWithText-Text= b.text
   = f.submit 'Save', class: 'aButton asFullbleed'
