@@ -1,22 +1,35 @@
 - content_for :title, "New Entry - Decent Organizations Directory"
 .grid-container
-  .grid-x
-    .cell
-      %h2 Add new post
-    .cell
-      = form_for @post do |f|
-        - if @post.errors.any?
-          - @post.errors.full_messages.each do |msg|
-            .callout.alert= msg
-        = f.label :title, 'Title'
-        = f.text_field :title
-        = f.label :description, 'Description'
-        = f.text_area :description
-        = f.label :url, 'URL'
-        = f.text_field :url
-        = f.label 'Categories'
-        .cell
-          = f.collection_check_boxes :category_ids, Category.all, :id, :name, include_hidden: false
-        = f.submit 'Save', class: 'button'
+  .grid-x.grid-padding-x
+    .cell.small-12
+      .aFormSheet
+        .grid-x
+          .cell.small-12
+            %h2 Add new Post
+          .cell.small-12
+            = form_for @post do |f|
+              - if @post.errors.any?
+                - @post.errors.full_messages.each do |msg|
+                  .aCallout.asAlert= msg
+              = f.label :title, 'Title'
+              = f.text_field :title, class: 'aInput'
+              = f.label :description, 'Description'
+              = f.text_area :description, class: 'aInput asTextarea'
+              = f.label :url, 'URL'
+              = f.text_field :url, class: 'aInput'
+              = f.label 'Categories'
+              .aFormSheet-Categories
+                .grid-x.grid-margin-x.grid-margin-y
+                  = f.collection_check_boxes :category_ids, Category.all, :id, :name, include_hidden: false do |b|
+                    - icon = asset_exist?("icons/Icon-#{b.text}.png") ? "icons/Icon-#{b.text}.png" : "icons/Icon-All.png"
+                    .cell.small-6.large-3
+                      .aCustomCheckbox
+                        = b.label(class: 'aCustomCheckbox-Label') do
+                          = b.check_box(class: 'aCustomCheckbox-Checkbox')
+                          .aCustomCheckbox-CustomLabel
+                            .aIconWithText
+                              = image_tag icon, class: 'aIconWithText-Icon'
+                              %span.aIconWithText-Text= b.text
+              = f.submit 'Save', class: 'aButton asFullbleed'
         
     

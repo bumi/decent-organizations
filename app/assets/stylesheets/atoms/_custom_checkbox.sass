@@ -1,0 +1,21 @@
+.aCustomCheckbox
+  position: relative
+
+  &-Checkbox
+    position: absolute
+    opacity: 0
+
+  &-CustomLabel
+    display: flex
+    justify-content: center
+    width: 100%
+    padding: 5px
+    border: 1px solid $lighter-grey
+    border-radius: 4px
+    color: rgba($black, .7)
+    cursor: pointer
+
+  &-Checkbox:checked ~ &-CustomLabel
+    background-color: $accent-color
+    border-color: $accent-color
+    color: $white
