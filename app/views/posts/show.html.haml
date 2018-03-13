@@ -6,7 +6,7 @@
         .aCallout.asAlert= flash[:alert]
       -if flash[:notice]
         .aCallout.asSuccess= flash[:notice]
-    .cell.small-12.large-9.large-offset-3
+    .cell.small-12.large-8
       .bPostWrapper
         .bPostWrapper-Post
           .aPost
@@ -26,10 +26,22 @@
                   %span.aPostMeta
                     = "Added #{time_ago_in_words(@post.created_at)} ago - "
                     = link_to  "Edit", edit_post_path(@post), class: 'aPostMeta-Link'
-
-
-
         .bPostWrapper-Post
           .grid-x
             .cell.small-12.medium-10.medium-offset-2
               = render 'comments', post: @post
+
+    .cell.small-12.large-4
+      .bPostWrapper
+        %h4.bPostWrapper-Title Related Posts
+        - @related_posts.each do |related_post|
+          .bPostWrapper-Post
+            .aPost
+              .aPost-Category
+                %small= related_post.categories.map(&:name).join(", ")
+              .aPost-Title
+                = link_to related_post.title, related_post
+              .aPost-Teaser
+                %p= simple_format(auto_link(related_post.description))
+
+
