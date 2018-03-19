@@ -13,15 +13,7 @@ class PostsController < ApplicationController
   end
 
   def new
-    @post = Post.new
-    begin
-      page = MetaInspector.new(link_params[:url], connection_timeout: 5, read_timeout: 5, retries: 1)
-      @post.title = page.title
-      @post.description = page.best_description
-      @post.url = page.url
-    rescue MetaInspector::TimeoutError, MetaInspector::RequestError, MetaInspector::ParserError
-      Rails.logger.error("MetaInspector failed to load #{link_params[:url]}")
-    end if link_params[:url].present?
+    @post = Post.new(MetaData.new(link_params[:url]).page)
   end
 
   def create
