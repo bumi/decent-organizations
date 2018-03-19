@@ -2,11 +2,10 @@ class PostsController < ApplicationController
   before_action :find_post, only: [:show]
 
   def index
-     @posts = Post.paginate(page: params[:page], per_page: 10)
+    @posts = Post.includes(:comments, :categories).paginate(page: params[:page], per_page: 10)
   end
 
   def show
-    @post = Post.friendly.find(params[:id])
     @related_posts = @post.related_posts
     @upvote_comment = Comment.new
   end
