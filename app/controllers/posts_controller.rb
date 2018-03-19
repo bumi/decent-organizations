@@ -1,4 +1,6 @@
 class PostsController < ApplicationController
+  before_action :find_post, only: [:show]
+
   def index
      @posts = Post.paginate(page: params[:page], per_page: 10)
   end
@@ -56,7 +58,14 @@ class PostsController < ApplicationController
     else
       render 'show'
     end
+  end
 
+  def find_post
+    @post = Post.friendly.find(params[:id])
+
+    if request.path != post_path(@post)
+      return redirect_to @post, status: :moved_permanently
+    end
   end
 
   private
