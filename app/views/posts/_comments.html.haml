@@ -1,5 +1,5 @@
 .bComments
-  %h4.bComments-Title= "#{post.comments.count} Comments"
+  %h4.bComments-Title= "#{post.comments.size} Comments"
   = render 'comments_form', post: post
   - post.comments.each do |comment|
     .aComment
