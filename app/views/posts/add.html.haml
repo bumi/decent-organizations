@@ -5,7 +5,7 @@
       .aFormSheet
         .grid-x
           .cell.small-12
-            %h2 Add new post
+            %h2 Add new entry
           .cell.small-12
             = form_tag(new_post_path, method: :get) do
               .grid-x
@@ -15,7 +15,7 @@
                     = text_field_tag :url, nil, class: 'aInput noMarginMedium'
                 .cell.small-12.medium-2
                   .aFormSheet-Button
-                    = submit_tag 'Save', class: 'aButton', id: 'display-loading-overlay'
+                    = submit_tag 'Next', class: 'aButton', id: 'display-loading-overlay'
         
 #loading-overlay.loading-overlay.as-hidden
   .loading-spinner
