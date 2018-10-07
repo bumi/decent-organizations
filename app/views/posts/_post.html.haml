@@ -1,10 +1,6 @@
 .aPost
   .grid-x
-    .cell.small-2
-      .aVoteCount
-        %span.aVoteCount-Icon ▲
-        %span.aVoteCount-Votes= post.upvotes
-    .cell.small-10
+    .cell.small-12
       .aPost-Category
         %small= post.categories.map(&:name).join(", ")
       %h3.aPost-Title
@@ -13,5 +9,5 @@
         %span= post.description
       .aPost-Meta
         %span.aPostMeta
-          = link_to "#{post.comments.count} Comments", post_path(post), class: 'aPostMeta-Link'
+          = link_to "#{post.comments.size} Comments", post_path(post), class: 'aPostMeta-Link'
           = " ● Added #{time_ago_in_words(post.created_at)} ago"
