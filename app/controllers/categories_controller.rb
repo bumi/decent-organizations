@@ -1,15 +1,17 @@
 class CategoriesController < ApplicationController
-  before_action :find_category, only: [:show]
+  include UniqueResourceUrl
+
 
   def show
+    @category = category
+    ensure_or_redirect_to(@category)
     @posts = @category.posts.paginate(page: params[:page], per_page: 10)
   end
-end
 
-def find_category
-  @category = Category.friendly.find(params[:id])
+  private
 
-  if request.path != category_path(@category)
-    return redirect_to @category, status: :moved_permanently
+  def category
+    @_category ||= Category.friendly.find(params[:id])
   end
 end
+

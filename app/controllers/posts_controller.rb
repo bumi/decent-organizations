@@ -1,12 +1,13 @@
 class PostsController < ApplicationController
-  before_action :find_post, only: [:show]
+  include UniqueResourceUrl
 
   def index
      @posts = Post.paginate(page: params[:page], per_page: 10)
   end
 
   def show
-    @post = Post.friendly.find(params[:id])
+    @post = post
+    ensure_or_redirect_to(post); return if performed?
     @related_posts = @post.related_posts
     @upvote_comment = Comment.new
   end
@@ -36,11 +37,11 @@ class PostsController < ApplicationController
   end
 
   def edit
-    @post = Post.friendly.find(params[:id])
+    @post = post
   end
 
   def update
-    @post = Post.friendly.find(params[:id])
+    @post = post
 
     if @post.update(post_params)
      redirect_to @post
@@ -50,7 +51,7 @@ class PostsController < ApplicationController
   end
 
   def upvote
-    @post = Post.friendly.find(params[:id])
+    @post = post
     @upvote_comment = Comment.new(comment_params.merge(post: @post))
     if @upvote_comment.save
       @post.upvote
@@ -60,15 +61,11 @@ class PostsController < ApplicationController
     end
   end
 
-  def find_post
-    @post = Post.friendly.find(params[:id])
-
-    if request.path != post_path(@post)
-      return redirect_to @post, status: :moved_permanently
-    end
-  end
-
   private
+
+  def post
+    @_post ||= Post.friendly.find(params[:id])
+  end
 
   def post_params
     params.require(:post).permit(:title, :description, :url, :category_ids => [])
