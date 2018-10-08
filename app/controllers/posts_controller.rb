@@ -7,7 +7,7 @@ class PostsController < ApplicationController
 
   def show
     @post = post
-    ensure_or_redirect_to(post); return if performed?
+    ensure_path_or_redirect_to(post); return if performed?
     @related_posts = @post.related_posts
     @upvote_comment = Comment.new
   end

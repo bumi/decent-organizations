@@ -4,7 +4,7 @@ class CategoriesController < ApplicationController
 
   def show
     @category = category
-    ensure_or_redirect_to(@category)
+    ensure_path_or_redirect_to(@category)
     @posts = @category.posts.includes(:comments, :categories).paginate(page: params[:page], per_page: 30)
   end
 
