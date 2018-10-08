@@ -6,11 +6,10 @@ class PostsController < ApplicationController
   end
 
   def show
-    @post = post
     ensure_path_or_redirect_to(post)
     return if performed?
 
-    @related_posts = @post.related_posts
+    @related_posts = post.related_posts
     @upvote_comment = Comment.new
   end
 
@@ -31,25 +30,22 @@ class PostsController < ApplicationController
   end
 
   def edit
-    @post = post
+    post
   end
 
   def update
-    @post = post
-
-    if @post.update(post_params)
-     redirect_to @post
+    if post.update(post_params)
+     redirect_to post
     else
       render 'edit'
     end
   end
 
   def upvote
-    @post = post
-    @upvote_comment = Comment.new(comment_params.merge(post: @post))
+    @upvote_comment = Comment.new(comment_params.merge(post: post))
     if @upvote_comment.save
-      @post.upvote
-      redirect_to post_path(@post)
+      post.upvote
+      redirect_to post_path(post)
     else
       render 'show'
     end
@@ -58,7 +54,7 @@ class PostsController < ApplicationController
   private
 
   def post
-    @_post ||= Post.friendly.find(params[:id])
+    @post ||= Post.friendly.find(params[:id])
   end
 
   def post_params
