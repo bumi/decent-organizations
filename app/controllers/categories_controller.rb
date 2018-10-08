@@ -10,7 +10,7 @@ class CategoriesController < ApplicationController
   private
 
   def category
-    @_category ||= Category.friendly.find(params[:id])
+    @category ||= Category.friendly.find(params[:id])
   end
 end
 
