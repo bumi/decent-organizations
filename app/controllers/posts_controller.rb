@@ -1,11 +1,15 @@
 class PostsController < ApplicationController
+  include UniqueResourceUrl
+
   def index
     @posts = Post.includes(:comments, :categories).paginate(page: params[:page], per_page: 40)
   end
 
   def show
-    @post = Post.friendly.find(params[:id])
-    @related_posts = @post.related_posts
+    ensure_path_or_redirect_to(post)
+    return if performed?
+
+    @related_posts = post.related_posts
     @upvote_comment = Comment.new
   end
 
@@ -26,32 +30,32 @@ class PostsController < ApplicationController
   end
 
   def edit
-    @post = Post.friendly.find(params[:id])
+    post
   end
 
   def update
-    @post = Post.friendly.find(params[:id])
-
-    if @post.update(post_params)
-     redirect_to @post
+    if post.update(post_params)
+     redirect_to post
     else
       render 'edit'
     end
   end
 
   def upvote
-    @post = Post.friendly.find(params[:id])
-    @upvote_comment = Comment.new(comment_params.merge(post: @post))
+    @upvote_comment = Comment.new(comment_params.merge(post: post))
     if @upvote_comment.save
-      @post.upvote
-      redirect_to post_path(@post)
+      post.upvote
+      redirect_to post_path(post)
     else
       render 'show'
     end
-
   end
 
   private
+
+  def post
+    @post ||= Post.friendly.find(params[:id])
+  end
 
   def post_params
     params.require(:post).permit(:title, :description, :url, :category_ids => [])
