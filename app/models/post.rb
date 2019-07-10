@@ -12,7 +12,7 @@ class Post < ApplicationRecord
   validates :upvotes, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
   validates :slug, presence: true
   validate :valid_url
-  
+
   default_scope { order("created_at DESC") }
 
   def valid_url
@@ -37,6 +37,6 @@ class Post < ApplicationRecord
   end
 
   def related_posts(limit = 3)
-    Post.unscoped.joins(:categories).order('RANDOM()').where.not(id: id).where(categories: { id: category_ids}).limit(limit).group(:id)
+    Post.unscoped.joins(:categories).order(Arel.sql('RANDOM()')).where.not(id: id).where(categories: { id: category_ids}).limit(limit).group(:id)
   end
 end
